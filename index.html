@@ -369,450 +369,136 @@ body {
   line-height: 1.4;
 }
 
-/* — SANKEY — */
-.sankey-section {
+/* — TIMELINE STRIPS — */
+.strips-section {
   margin: 3rem 0;
   padding: 2rem 0;
   border-top: 1px solid var(--border);
   border-bottom: 1px solid var(--border);
   overflow: hidden;
 }
-.sankey-title {
+.strips-title {
   font-family: var(--font-display);
   font-style: italic;
   font-size: 1.3rem;
   margin-bottom: 0.5rem;
 }
-.sankey-sub {
-  font-family: var(--font-mono);
-  font-size: 0.72rem;
-  color: var(--fg-dim);
-  max-width: min(520px, 100%);
-  line-height: 1.5;
-  margin-bottom: 1.5rem;
-  word-wrap: break-word;
-}
-.sankey-scroll {
-  overflow-x: auto;
-  overflow-y: hidden;
-  -webkit-overflow-scrolling: touch;
-  width: 100%;
-  max-width: 100%;
-}
-.sankey-scroll::-webkit-scrollbar { height: 3px; }
-.sankey-scroll::-webkit-scrollbar-track { background: transparent; }
-.sankey-scroll::-webkit-scrollbar-thumb { background: var(--fg-muted); border-radius: 2px; }
-.sankey {
-  display: block;
-  height: auto;
-  min-width: 600px;
-  width: 100%;
-}
-.sankey-note {
+.strips-sub {
   font-family: var(--font-mono);
   font-size: 0.62rem;
-  color: var(--fg-muted);
-  margin-top: 1rem;
-  line-height: 1.5;
-}
-@media (max-width: 600px) {
-  .sankey-section { margin: 2rem 0; padding: 1.5rem 0; }
-}
-
-
-
-/* — STICKY NAV — */
-.sticky-nav {
-  position: fixed;
-  top: 0;
-  left: 0;
-  right: 0;
-  z-index: 300;
-  background: rgba(16, 16, 16, 0.92);
-  backdrop-filter: blur(12px);
-  -webkit-backdrop-filter: blur(12px);
-  border-bottom: 1px solid var(--border);
-  transform: translateY(-100%);
-  transition: transform 0.3s ease;
-  padding: 0 1.5rem;
-}
-.sticky-nav.visible { transform: translateY(0); }
-.sticky-nav-inner {
-  max-width: 1100px;
-  margin: 0 auto;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  height: 72px;
-}
-.sticky-nav-brand {
-  font-family: var(--font-display);
-  font-style: italic;
-  font-weight: 700;
-  font-size: 1.6rem;
-  color: var(--fg);
-  text-decoration: none;
-  flex-shrink: 0;
-}
-.sticky-nav-brand span { color: var(--green); }
-.sticky-nav-links {
-  display: flex;
-  gap: 0.25rem;
-  overflow-x: auto;
-  -webkit-overflow-scrolling: touch;
-  scrollbar-width: none;
-}
-.sticky-nav-links::-webkit-scrollbar { display: none; }
-.sticky-nav-link {
-  font-family: var(--font-mono);
-  font-size: 0.95rem;
-  color: var(--fg-dim);
-  text-decoration: none;
-  padding: 9px 14px;
-  border-radius: 4px;
-  white-space: nowrap;
-  transition: color 0.2s, background 0.2s;
-  flex-shrink: 0;
-}
-.sticky-nav-link:hover {
-  color: var(--green);
-  background: rgba(194, 210, 24, 0.08);
-}
-.sticky-nav-link.active {
-  color: var(--green);
-}
-
-@media (max-width: 600px) {
-  .sticky-nav-brand { font-size: 1.3rem; }
-  .sticky-nav-link { font-size: 0.82rem; padding: 7px 10px; }
-  .sticky-nav-inner { height: 60px; }
-}
-
-
-/* — MIGRATION MAP — */
-.migration {
-  padding: 4rem 0 2rem;
-  border-top: 1px solid var(--border);
-  margin-top: 3rem;
-  scroll-margin-top: 80px;
-}
-.migration-title {
-  font-family: var(--font-display);
-  font-style: italic;
-  font-size: 1.3rem;
-  margin-bottom: 0.5rem;
-}
-.migration-sub {
-  font-family: var(--font-mono);
-  font-size: 0.72rem;
   color: var(--fg-dim);
   line-height: 1.5;
-  margin-bottom: 2rem;
+  margin-bottom: 1rem;
   max-width: min(520px, 100%);
 }
-.mig-graph {
-  position: relative;
-  min-height: 500px;
-  margin-bottom: 1.5rem;
-}
-.mig-columns {
+.strips-legend {
   display: flex;
-  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-bottom: 1.2rem;
+}
+.strips-legend-item {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  font-family: var(--font-mono);
+  font-size: 0.62rem;
+  color: var(--fg-dim);
+}
+.strips-legend-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 2px;
+  flex-shrink: 0;
+}
+.strips-container {
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+}
+.strips-container::-webkit-scrollbar { height: 3px; }
+.strips-container::-webkit-scrollbar-thumb { background: var(--fg-muted); border-radius: 2px; }
+.strips-inner {
+  min-width: 500px;
+}
+.strips-row {
+  display: flex;
+  align-items: center;
+  margin-bottom: 2px;
+  height: 26px;
+}
+.strips-name {
+  width: 90px;
+  font-family: var(--font-mono);
+  font-size: 0.62rem;
+  color: var(--fg-dim);
+  flex-shrink: 0;
+  text-align: right;
+  padding-right: 8px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.strips-bar {
+  flex: 1;
+  display: flex;
+  height: 18px;
   position: relative;
+}
+.strips-seg {
+  height: 100%;
+  min-width: 2px;
+  border-radius: 2px;
+  margin-right: 1px;
+  position: relative;
+  transition: opacity 0.15s;
+  cursor: pointer;
+}
+.strips-seg:hover {
+  opacity: 0.8;
+  transform: scaleY(1.4);
   z-index: 2;
 }
-.mig-col {
-  width: 160px;
-  flex-shrink: 0;
-}
-.mig-col-right { text-align: right; }
-.mig-node {
-  padding: 10px 12px;
-  margin-bottom: 6px;
-  background: var(--card-bg);
-  border-radius: 4px;
-  cursor: pointer;
-  transition: opacity 0.3s, border-color 0.3s;
-  border-left: 3px solid transparent;
-  position: relative;
-}
-.mig-col-right .mig-node {
-  border-left: none;
-  border-right: 3px solid transparent;
-}
-.mig-node-label {
-  font-size: 0.82rem;
-  font-weight: 700;
-  line-height: 1.2;
-}
-.mig-node-count {
-  font-family: var(--font-mono);
-  font-size: 0.62rem;
-  color: var(--fg-muted);
-  margin-top: 2px;
-}
-.mig-node:hover { opacity: 1 !important; }
-.mig-node[data-src="igromania"] { border-left-color: #C2D218; }
-.mig-node[data-src="stranigr"] { border-left-color: #E84434; }
-.mig-node[data-src="dtf"] { border-left-color: #1DB2AC; }
-.mig-node[data-src="stopgame"] { border-left-color: #888; }
-.mig-node[data-src="kanobu"] { border-left-color: #7B68EE; }
-.mig-node[data-dest="gamedev"] { border-right-color: #C2D218; }
-.mig-node[data-dest="pr"] { border-right-color: #1DB2AC; }
-.mig-node[data-dest="youtube"] { border-right-color: #E84434; }
-.mig-node[data-dest="media"] { border-right-color: #888; }
-.mig-node[data-dest="unknown"] { border-right-color: #444; }
-.mig-svg {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  z-index: 1;
-  pointer-events: none;
-}
-.mig-line {
-  fill: none;
-  stroke-width: 1.5;
-  opacity: 0.15;
-  transition: opacity 0.3s, stroke-width 0.3s;
-  pointer-events: stroke;
-  cursor: pointer;
-}
-.mig-line.highlight {
-  opacity: 0.7;
-  stroke-width: 2.5;
-}
-.mig-line.dim { opacity: 0.04; }
-.mig-tooltip {
+.strips-seg:hover .strips-tip { display: block; }
+.strips-tip {
   display: none;
-  position: fixed;
+  position: absolute;
+  bottom: 130%;
+  left: 0;
   background: var(--card-bg);
   border: 1px solid var(--border);
-  border-radius: 4px;
-  padding: 8px 12px;
-  z-index: 300;
-  max-width: 280px;
+  border-radius: 3px;
+  padding: 4px 8px;
+  font-family: var(--font-mono);
+  font-size: 0.62rem;
+  white-space: nowrap;
+  z-index: 10;
+  color: var(--fg);
   pointer-events: none;
 }
-.mig-tooltip.show { display: block; }
-.mig-tooltip-name {
-  font-weight: 700;
-  font-size: 0.82rem;
-  margin-bottom: 3px;
-}
-.mig-tooltip-path {
-  font-size: 0.82rem;
-  color: var(--fg-dim);
-  line-height: 1.4;
-}
-
-.mig-detail {
-  margin-top: 1.5rem;
-  padding: 1rem 0;
-  border-top: 1px solid var(--border);
-  display: none;
-}
-.mig-detail.show { display: block; }
-.mig-detail-title {
-  font-family: var(--font-mono);
-  font-size: 0.72rem;
-  color: var(--green);
-  margin-bottom: 0.8rem;
-  text-transform: uppercase;
-  letter-spacing: 0.05em;
-}
-.mig-detail-item {
-  padding: 6px 0;
-  border-bottom: 1px solid rgba(255,255,255,0.04);
+.strips-axis {
   display: flex;
-  align-items: baseline;
-  gap: 8px;
-  flex-wrap: wrap;
+  margin-left: 90px;
+  margin-top: 6px;
 }
-.mig-detail-name {
-  font-weight: 700;
-  font-size: 0.82rem;
-  min-width: 130px;
-  flex-shrink: 0;
-}
-.mig-detail-path {
-  font-size: 0.82rem;
-  color: var(--fg-dim);
-  line-height: 1.4;
-}
-@media (max-width: 600px) {
-  .mig-detail-name { min-width: 100%; }
-}
-
-.mig-note {
+.strips-axis span {
+  flex: 1;
   font-family: var(--font-mono);
   font-size: 0.62rem;
   color: var(--fg-muted);
+  text-align: center;
+}
+.strips-note {
+  font-family: var(--font-mono);
+  font-size: 0.62rem;
+  color: var(--fg-muted);
+  margin-top: 1rem;
   line-height: 1.5;
 }
 @media (max-width: 600px) {
-  .mig-col { width: 110px; }
-  .mig-node-label { font-size: 0.72rem; }
-  .mig-node { padding: 8px 8px; }
-  .mig-graph { min-height: 400px; }
+  .strips-name { width: 70px; font-size: 0.58rem; }
+  .strips-inner { min-width: 450px; }
 }
 
-/* — DOSSIER — */
-.dossier {
-  padding: 4rem 0 2rem;
-  scroll-margin-top: 80px;
-  border-top: 1px solid var(--border);
-  margin-top: 5rem;
-}
-.dossier-label {
-  font-family: var(--font-mono);
-  font-size: 0.72rem;
-  color: var(--green);
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
-  margin-bottom: 0.5rem;
-}
-.dossier-title {
-  font-family: var(--font-display);
-  font-style: italic;
-  font-size: clamp(1.6rem, 4vw, 2rem);
-  margin-bottom: 0.5rem;
-}
-.dossier-sub {
-  font-family: var(--font-mono);
-  font-size: 0.72rem;
-  color: var(--fg-dim);
-  margin-bottom: 2.5rem;
-  line-height: 1.5;
-}
-.dossier-cards {
-  display: flex;
-  flex-direction: column;
-  gap: 1rem;
-}
-.dossier-card {
-  background: var(--card-bg);
-  border-radius: 6px;
-  border-left: 3px solid var(--green);
-  overflow: hidden;
-  transition: border-color 0.2s;
-}
-.dossier-card:hover { border-left-color: var(--fg); }
-.dossier-card-header {
-  padding: 1.2rem 1.5rem;
-  cursor: pointer;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-}
-.dossier-card-info { flex: 1; }
-.dossier-card-name {
-  font-weight: 700;
-  font-size: 1rem;
-  margin-bottom: 0.25rem;
-}
-.dossier-card-desc {
-  font-family: var(--font-mono);
-  font-size: 0.72rem;
-  color: var(--fg-dim);
-  line-height: 1.4;
-}
-.dossier-card-toggle {
-  font-family: var(--font-mono);
-  font-size: 0.82rem;
-  color: var(--fg-dim);
-  flex-shrink: 0;
-  margin-left: 1rem;
-  transition: transform 0.3s;
-}
-.dossier-card.open .dossier-card-toggle { transform: rotate(45deg); }
-.dossier-card-body {
-  max-height: 0;
-  overflow: hidden;
-  transition: max-height 0.5s ease;
-}
-.dossier-card.open .dossier-card-body {
-  max-height: 20000px;
-}
-.dossier-card-content {
-  padding: 0 1.5rem 1.5rem;
-  border-top: 1px solid var(--border);
-}
-.dossier-card-content .article-text {
-  margin-top: 1.5rem;
-}
-.dossier-card-soon {
-  padding: 1.2rem 1.5rem;
-  opacity: 0.5;
-}
-.dossier-card-soon .dossier-card-name {
-  font-weight: 400;
-  color: var(--fg-dim);
-}
-
-/* — INLINE LINK — */
-.inline-dossier {
-  font-family: var(--font-mono);
-  font-size: 0.72rem;
-  color: var(--green);
-  text-decoration: none;
-  border-bottom: 1px dotted var(--green);
-  opacity: 0.7;
-  transition: opacity 0.2s;
-}
-.inline-dossier:hover { opacity: 1; }
-
-
-/* — COMING SOON OVERLAY — */
-.section-coming-soon {
-  position: relative;
-}
-.section-coming-soon > *:not(.coming-soon-overlay) {
-  filter: blur(4px);
-  opacity: 0.3;
-  pointer-events: none;
-  user-select: none;
-}
-.coming-soon-overlay {
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  z-index: 10;
-  pointer-events: none;
-}
-.coming-soon-badge {
-  font-family: var(--font-display);
-  font-style: italic;
-  font-size: 1.8rem;
-  color: var(--fg);
-  margin-bottom: 0.5rem;
-}
-.coming-soon-sub {
-  font-family: var(--font-mono);
-  font-size: 0.72rem;
-  color: var(--fg-dim);
-  text-align: center;
-  max-width: 300px;
-  line-height: 1.5;
-}
-
-
-/* — SIDEBAR GENERATED — */
-.tl-s-dossier-group {
-  margin-top: 2rem;
-  padding-top: 1rem;
-  border-top: 1px solid var(--border);
-}
-.tl-s-migration-group {
-  margin-top: 1rem;
-}
 /* — FOCUS — */
 :focus-visible {
   outline: 2px solid var(--green);
@@ -1065,90 +751,13 @@ a:focus-visible, .tl-s-event:focus-visible, .tl-s-era-label:focus-visible {
 <p>В июле 2025-го продали сам Kotaku — европейской компании Keleops. В сентябре 2026-го Ziff Davis провёл очередные сокращения в IGN. Уволены ведущие Seth Macy и Brian Altano, работавшие на сайте годами. Профсоюз IGN Creators Guild: «С каждым последующим сокращением ключевые части работы IGN продолжают отрезаться». Ziff Davis в 2024-м купил Eurogamer и Rock Paper Shotgun — и с тех пор режет их штат. Академическая статья 2026 года о профессии называется «You Can't Work for Somebody Who Doesn't Exist».</p>
 <p>Game Informer, впрочем, вернулся. В марте 2025-го права выкупила Gunzilla Games — немецко-украинская студия, делающая блокчейн-шутер Off The Grid. Вся оригинальная команда воссоединилась. Печать возобновлена с июня 2025-го. «Игромания» вернулась в бумагу под третьим владельцем. Game Informer — под крылом блокчейн-студии. Оба прошли один путь: закрытие, пауза, воскрешение в руках, о которых основатели не думали.</p>
 
-<div class="sankey-section">
-  <div class="sankey-title">Куда ушли люди</div>
-  <div class="sankey-sub">Основные направления кадровой миграции из игровых редакций. Толщина потока — относительный масштаб, не точное число людей.</div>
-  <div class="sankey-scroll"><svg class="sankey" viewBox="0 0 720 420" xmlns="http://www.w3.org/2000/svg">
-    <!-- Left nodes (sources) -->
-    <rect x="0" y="10" width="130" height="80" rx="3" fill="#181818" stroke="rgba(255,255,255,0.08)" stroke-width="1"/>
-    <text x="12" y="35" fill="#FAFAFA" font-family="'PT Serif', serif" font-size="13" font-weight="700">Игромания</text>
-    <text x="12" y="55" fill="#777" font-family="'Share Tech Mono', monospace" font-size="9">2016 · 2019 · 2022</text>
-    <text x="12" y="72" fill="#777" font-family="'Share Tech Mono', monospace" font-size="9">Три волны ухода</text>
-
-    <rect x="0" y="120" width="130" height="55" rx="3" fill="#181818" stroke="rgba(255,255,255,0.08)" stroke-width="1"/>
-    <text x="12" y="145" fill="#FAFAFA" font-family="'PT Serif', serif" font-size="13" font-weight="700">Страна Игр</text>
-    <text x="12" y="162" fill="#777" font-family="'Share Tech Mono', monospace" font-size="9">Gameland, 2013</text>
-
-    <rect x="0" y="190" width="130" height="55" rx="3" fill="#181818" stroke="rgba(255,255,255,0.08)" stroke-width="1"/>
-    <text x="12" y="215" fill="#FAFAFA" font-family="'PT Serif', serif" font-size="13" font-weight="700">Kanobu</text>
-    <text x="12" y="232" fill="#777" font-family="'Share Tech Mono', monospace" font-size="9">Несколько составов</text>
-
-    <rect x="0" y="260" width="130" height="55" rx="3" fill="#181818" stroke="rgba(255,255,255,0.08)" stroke-width="1"/>
-    <text x="12" y="285" fill="#FAFAFA" font-family="'PT Serif', serif" font-size="13" font-weight="700">DTF</text>
-    <text x="12" y="302" fill="#777" font-family="'Share Tech Mono', monospace" font-size="9">Сокращения 2022</text>
-
-    <rect x="0" y="330" width="130" height="40" rx="3" fill="#181818" stroke="rgba(255,255,255,0.08)" stroke-width="1"/>
-    <text x="12" y="355" fill="#FAFAFA" font-family="'PT Serif', serif" font-size="13" font-weight="700">TJ</text>
-
-    <rect x="0" y="380" width="130" height="35" rx="3" fill="#181818" stroke="rgba(255,255,255,0.08)" stroke-width="1"/>
-    <text x="12" y="403" fill="#FAFAFA" font-family="'PT Serif', serif" font-size="13" font-weight="700">ЛКИ</text>
-
-    <!-- Right nodes (destinations) -->
-    <rect x="590" y="10" width="130" height="90" rx="3" fill="#181818" stroke="rgba(255,255,255,0.08)" stroke-width="1"/>
-    <text x="602" y="38" fill="#FAFAFA" font-family="'PT Serif', serif" font-size="13" font-weight="700">PR и маркетинг</text>
-    <text x="602" y="58" fill="#777" font-family="'Share Tech Mono', monospace" font-size="9">Крупнейший поток</text>
-    <text x="602" y="73" fill="#777" font-family="'Share Tech Mono', monospace" font-size="9">Навыки те же,</text>
-    <text x="602" y="88" fill="#777" font-family="'Share Tech Mono', monospace" font-size="9">оплата выше</text>
-
-    <rect x="590" y="115" width="130" height="55" rx="3" fill="#181818" stroke="rgba(255,255,255,0.08)" stroke-width="1"/>
-    <text x="602" y="140" fill="#FAFAFA" font-family="'PT Serif', serif" font-size="13" font-weight="700">Геймдев</text>
-    <text x="602" y="155" fill="#777" font-family="'Share Tech Mono', monospace" font-size="9">Продюсеры, комьюнити</text>
-
-    <rect x="590" y="185" width="130" height="45" rx="3" fill="#181818" stroke="rgba(255,255,255,0.08)" stroke-width="1"/>
-    <text x="602" y="210" fill="#FAFAFA" font-family="'PT Serif', serif" font-size="13" font-weight="700">Другие медиа</text>
-    <text x="602" y="224" fill="#777" font-family="'Share Tech Mono', monospace" font-size="9">DTF, VC и другие</text>
-
-    <rect x="590" y="245" width="130" height="50" rx="3" fill="#181818" stroke="rgba(255,255,255,0.08)" stroke-width="1"/>
-    <text x="602" y="268" fill="#FAFAFA" font-family="'PT Serif', serif" font-size="13" font-weight="700">Telegram-каналы</text>
-    <text x="602" y="285" fill="#777" font-family="'Share Tech Mono', monospace" font-size="9">Побочный проект</text>
-
-    <rect x="590" y="310" width="130" height="40" rx="3" fill="#181818" stroke="rgba(255,255,255,0.08)" stroke-width="1"/>
-    <text x="602" y="335" fill="#FAFAFA" font-family="'PT Serif', serif" font-size="13" font-weight="700">Другие индустрии</text>
-
-    <rect x="590" y="365" width="130" height="48" rx="3" fill="#181818" stroke="rgba(255,255,255,0.08)" stroke-width="1"/>
-    <text x="602" y="388" fill="#FAFAFA" font-family="'PT Serif', serif" font-size="13" font-weight="700">Релокация</text>
-    <text x="602" y="405" fill="#777" font-family="'Share Tech Mono', monospace" font-size="9">Общий IT-поток</text>
-
-    <!-- Flows: Игромания → destinations -->
-    <path d="M130,35 C360,35 430,30 590,30" stroke="#C2D218" stroke-width="28" fill="none" opacity="0.18"/>
-    <path d="M130,60 C360,60 430,128 590,128" stroke="#C2D218" stroke-width="14" fill="none" opacity="0.18"/>
-    <path d="M130,75 C360,75 430,200 590,200" stroke="#C2D218" stroke-width="12" fill="none" opacity="0.18"/>
-    <path d="M130,90 C360,90 430,265 590,265" stroke="#C2D218" stroke-width="8" fill="none" opacity="0.18"/>
-
-    <!-- Flows: Страна Игр → destinations -->
-    <path d="M130,135 C360,135 430,55 590,55" stroke="#E84434" stroke-width="12" fill="none" opacity="0.18"/>
-    <path d="M130,150 C360,150 430,200 590,205" stroke="#E84434" stroke-width="8" fill="none" opacity="0.18"/>
-    <path d="M130,160 C360,160 430,325 590,325" stroke="#E84434" stroke-width="6" fill="none" opacity="0.18"/>
-
-    <!-- Flows: Kanobu → destinations -->
-    <path d="M130,205 C360,205 430,72 590,72" stroke="#1DB2AC" stroke-width="10" fill="none" opacity="0.18"/>
-    <path d="M130,220 C360,220 430,140 590,140" stroke="#1DB2AC" stroke-width="8" fill="none" opacity="0.18"/>
-    <path d="M130,235 C360,235 430,270 590,270" stroke="#1DB2AC" stroke-width="6" fill="none" opacity="0.18"/>
-
-    <!-- Flows: DTF → destinations -->
-    <path d="M130,275 C360,275 430,88 590,88" stroke="#C2D218" stroke-width="8" fill="none" opacity="0.15"/>
-    <path d="M130,290 C360,290 430,138 590,138" stroke="#C2D218" stroke-width="6" fill="none" opacity="0.15"/>
-    <path d="M130,300 C360,300 430,385 590,385" stroke="#C2D218" stroke-width="7" fill="none" opacity="0.15"/>
-
-    <!-- Flows: TJ → destinations -->
-    <path d="M130,345 C360,345 430,325 590,330" stroke="#777" stroke-width="6" fill="none" opacity="0.15"/>
-    <path d="M130,350 C360,350 430,390 590,390" stroke="#777" stroke-width="5" fill="none" opacity="0.15"/>
-
-    <!-- Flows: ЛКИ → destinations -->
-    <path d="M130,395 C360,395 430,195 590,200" stroke="#777" stroke-width="5" fill="none" opacity="0.15"/>
-    <path d="M130,400 C360,400 430,80 590,80" stroke="#777" stroke-width="3" fill="none" opacity="0.12"/>
-  </svg></div>
-  <div class="sankey-note">Диаграмма показывает направления, а не точные числа. Данные — из публичных источников: объявлений о назначениях, профилей, интервью.</div>
+<div class="strips-section">
+  <div class="strips-title">Куда ушли люди</div>
+  <div class="strips-sub">Карьерные пути сотрудников российских игровых редакций. Каждая полоска — один человек, цвет — организация, длина — стаж.</div>
+  <div class="strips-legend" id="stripsLegend1"></div>
+  <div class="strips-container"><div class="strips-inner" id="stripsChart1"></div></div>
+  <div class="strips-axis" id="stripsAxis1"></div>
+  <div class="strips-note">Данные из открытых источников: объявлений о назначениях, профилей, интервью.</div>
 </div>
 
 <p>Экспертиза мигрировала. Три волны за десять лет из одной только «Игромании» — добровольный уход, смена владельца, принудительное сокращение. Направления одни и те же: PR, маркетинг, геймдев, совсем другие индустрии. Telegram-каналы об играх — побочный проект для тех, кто работает в другом месте. 129 рублей в месяц. Не бизнес-модель. Хобби с монетизацией.</p>
@@ -1175,6 +784,12 @@ a:focus-visible, .tl-s-event:focus-visible, .tl-s-era-label:focus-visible {
   <div class="coming-soon-overlay"><div class="coming-soon-badge">Скоро</div><div class="coming-soon-sub">Интерактивная карта кадровой миграции — 29 карьерных переходов из шести изданий</div></div>
   <div class="migration-title">Карта миграции</div>
   <div class="migration-sub">29 карьерных переходов из шести изданий. Наведите на издание или направление — увидите конкретных людей. Наведите на линию — увидите путь.</div>
+
+  <div class="strips-legend" id="stripsLegend2" style="margin-bottom:1rem"></div>
+  <div class="strips-container"><div class="strips-inner" id="stripsChart2"></div></div>
+  <div class="strips-axis" id="stripsAxis2" style="margin-bottom:2rem"></div>
+  
+  <div style="font-family:var(--font-mono);font-size:0.72rem;color:var(--fg-dim);margin:2rem 0 1rem;padding-top:1rem;border-top:1px solid var(--border)">Интерактивная карта — кликните по изданию или направлению для деталей</div>
 
   <div class="mig-graph" id="migGraph">
     <div class="mig-columns">
@@ -1564,7 +1179,7 @@ const MIG_DATA = [
   { name:"С. Цилюрик", src:"stranigr", dest:"unknown", path:"редактор → IGN Russia → покинул Gameland" },
   { name:"С. Торик", src:"stranigr", dest:"pr", path:"→ PR/геймдев" },
   { name:"Б. Хохлов", src:"stranigr", dest:"media", path:"Total DVD → Empire/Film.ru" },
-  { name:"В. Елистратов", src:"dtf", dest:"media", path:"TJournal → DTF (главред)" },
+  { name:"В. Елистратов", src:"dtf", dest:"bigtech", path:"TJ → DTF (главред, 6 лет) → Кинопоиск (главред) → Яндекс" },
   { name:"Н. Лихачёв", src:"dtf", dest:"pr", path:"сооснователь TJ → Mail.ru Group" },
   { name:"В. Цыплухин", src:"dtf", dest:"unknown", path:"ВК → Комитет → ?" },
   { name:"С. Звезда", src:"dtf", dest:"unknown", path:"замглавреда → главред TJ → ?" },
@@ -1593,6 +1208,7 @@ const MIG_DESTS = [
   { id:"pr", label:"PR / маркетинг", color:"#1DB2AC" },
   { id:"youtube", label:"YouTube", color:"#E84434" },
   { id:"media", label:"Другие медиа", color:"#888" },
+  { id:"bigtech", label:"BigTech", color:"#FF8C00" },
   { id:"unknown", label:"Неизвестно", color:"#444" },
 ];
 
@@ -1768,6 +1384,99 @@ function showDetailPanel(title, people) {
   panel.classList.add("show");
   panel.scrollIntoView({ behavior: "smooth", block: "nearest" });
 }
+
+
+// Timeline strips builder
+const STRIPS_COLORS = {
+  igromania: "#2a78d6", stranigr: "#eb6834", dtf: "#1baf7a", stopgame: "#73726c",
+  kanobu: "#6250d6", yandex: "#FF8C00", gamedev: "#e87ba4", pr: "#1DB2AC",
+  youtube: "#E84434", bigtech: "#FF8C00", unknown: "#444"
+};
+
+const STRIPS_LABELS = {
+  igromania: "Игромания", stranigr: "Страна Игр", dtf: "Комитет", stopgame: "StopGame",
+  kanobu: "Kanobu", yandex: "Яндекс", gamedev: "Геймдев", pr: "PR",
+  youtube: "YouTube", bigtech: "BigTech", unknown: "?"
+};
+
+const STRIPS_DATA = [
+  {name:"Елистратов", segs:[{s:2014,e:2016,c:"dtf",l:"TJournal"},{s:2016,e:2022,c:"dtf",l:"DTF (главред)"},{s:2022,e:2024,c:"bigtech",l:"Кинопоиск"},{s:2024,e:2026,c:"bigtech",l:"Яндекс"}]},
+  {name:"Кузовлев", segs:[{s:2010,e:2016,c:"igromania",l:"Игромания"},{s:2016,e:2019,c:"dtf",l:"DTF"}]},
+  {name:"Бочаров", segs:[{s:2010,e:2016,c:"igromania",l:"Игромания"},{s:2016,e:2019,c:"dtf",l:"DTF"},{s:2019,e:2026,c:"gamedev",l:"GSC Game World"}]},
+  {name:"Чимде", segs:[{s:2010,e:2016,c:"igromania",l:"Игромания"},{s:2016,e:2022,c:"dtf",l:"DTF"}]},
+  {name:"Шуньков", segs:[{s:2010,e:2018,c:"igromania",l:"Игромания"},{s:2018,e:2026,c:"gamedev",l:"GSC Game World"}]},
+  {name:"Макаренков", segs:[{s:2007,e:2014,c:"igromania",l:"Игромания"},{s:2014,e:2019,c:"pr",l:"Innova"},{s:2019,e:2026,c:"youtube",l:"YouTube"}]},
+  {name:"Говорун", segs:[{s:2007,e:2013,c:"stranigr",l:"Страна Игр"},{s:2013,e:2015,c:"stranigr",l:"IGN Russia"},{s:2015,e:2017,c:"pr",l:"Nintendo PR"},{s:2017,e:2026,c:"pr",l:"Gaijin"}]},
+  {name:"Одинцова", segs:[{s:2007,e:2015,c:"stranigr",l:"Страна Игр / IGN"},{s:2015,e:2020,c:"pr",l:"Lenta.ru"},{s:2020,e:2026,c:"pr",l:"VK Play Media"}]},
+  {name:"Махтиев", segs:[{s:2007,e:2017,c:"kanobu",l:"Kanobu"},{s:2017,e:2019,c:"kanobu",l:"RAWG"},{s:2019,e:2025,c:"kanobu",l:"Kanobu+Игромания"},{s:2025,e:2026,c:"unknown",l:"Новый проект"}]},
+  {name:"Лихачёв", segs:[{s:2011,e:2019,c:"dtf",l:"TJournal"},{s:2019,e:2022,c:"pr",l:"Mail.ru Group"}]},
+  {name:"Гальперов", segs:[{s:2010,e:2025,c:"stopgame",l:"StopGame (15 лет)"},{s:2025,e:2026,c:"gamedev",l:"Ruler"}]},
+  {name:"Окороков", segs:[{s:2013,e:2025,c:"stopgame",l:"StopGame"},{s:2025,e:2026,c:"gamedev",l:"Ruler"}]},
+  {name:"Кунгуров", segs:[{s:2017,e:2022,c:"stopgame",l:"StopGame (главред)"},{s:2022,e:2026,c:"gamedev",l:"Ruler"}]},
+  {name:"Милязев", segs:[{s:2023,e:2025,c:"stopgame",l:"StopGame (главред)"},{s:2025,e:2026,c:"gamedev",l:"Ruler"}]},
+  {name:"Бурдуков", segs:[{s:2014,e:2023,c:"stopgame",l:"StopGame"},{s:2023,e:2026,c:"youtube",l:"YouTube"}]},
+];
+
+const S_Y0 = 2007, S_Y1 = 2026, S_SPAN = S_Y1 - S_Y0 + 1;
+
+function buildStrips(chartId, axisId, legendId) {
+  const ct = document.getElementById(chartId);
+  const ax = document.getElementById(axisId);
+  const lg = document.getElementById(legendId);
+  if (!ct) return;
+
+  const usedColors = new Set();
+  STRIPS_DATA.forEach(d => d.segs.forEach(s => usedColors.add(s.c)));
+
+  if (lg) {
+    usedColors.forEach(c => {
+      const item = document.createElement("span");
+      item.className = "strips-legend-item";
+      item.innerHTML = '<span class="strips-legend-dot" style="background:' + STRIPS_COLORS[c] + '"></span>' + STRIPS_LABELS[c];
+      lg.appendChild(item);
+    });
+  }
+
+  STRIPS_DATA.forEach(d => {
+    const row = document.createElement("div");
+    row.className = "strips-row";
+    const nm = document.createElement("div");
+    nm.className = "strips-name";
+    nm.textContent = d.name;
+    const bar = document.createElement("div");
+    bar.className = "strips-bar";
+
+    d.segs.forEach((s, i) => {
+      const seg = document.createElement("div");
+      seg.className = "strips-seg";
+      const w = ((Math.min(s.e, S_Y1 + 1) - Math.max(s.s, S_Y0)) / S_SPAN) * 100;
+      const left = ((Math.max(s.s, S_Y0) - S_Y0) / S_SPAN) * 100;
+      seg.style.width = w + "%";
+      if (i === 0) seg.style.marginLeft = left + "%";
+      seg.style.background = STRIPS_COLORS[s.c] || "#444";
+      const tip = document.createElement("div");
+      tip.className = "strips-tip";
+      tip.textContent = s.l + " (" + s.s + "–" + s.e + ")";
+      seg.appendChild(tip);
+      bar.appendChild(seg);
+    });
+
+    row.appendChild(nm);
+    row.appendChild(bar);
+    ct.appendChild(row);
+  });
+
+  if (ax) {
+    for (let y = S_Y0; y <= S_Y1; y += 2) {
+      const s = document.createElement("span");
+      s.textContent = y;
+      ax.appendChild(s);
+    }
+  }
+}
+
+buildStrips("stripsChart1", "stripsAxis1", "stripsLegend1");
+buildStrips("stripsChart2", "stripsAxis2", "stripsLegend2");
 
 buildMigGraph();
 

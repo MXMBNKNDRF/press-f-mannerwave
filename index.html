@@ -1818,6 +1818,7 @@ navLinks.forEach(link => {
       const offset = 80;
       const top = target.getBoundingClientRect().top + window.pageYOffset - offset;
       window.scrollTo({ top, behavior: 'smooth' });
+      history.pushState(null, '', '#' + link.dataset.section);
     }
   });
 });

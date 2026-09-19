@@ -223,7 +223,7 @@ body {
   font-size: 0.72rem;
   color: var(--fg-dim);
   text-decoration: none;
-  padding: 6px 12px;
+  padding: 12px 12px;
   border: 1px solid var(--border);
   border-radius: 4px;
   transition: color 0.2s, border-color 0.2s;
@@ -369,13 +369,66 @@ body {
   line-height: 1.4;
 }
 
+
+/* — FLOW OVERVIEW (Part 4) — */
+.flow-overview {
+  margin: 1.5rem 0;
+  position: relative;
+}
+.flow-svg {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 0;
+  pointer-events: none;
+}
+.flow-cols {
+  display: flex;
+  justify-content: space-between;
+  gap: 2rem;
+  position: relative;
+  z-index: 1;
+}
+.flow-col { width: 35%; }
+.flow-col-right { text-align: right; }
+.flow-node {
+  padding: 8px 10px;
+  margin-bottom: 10px;
+  background: var(--card-bg);
+  border-radius: 4px;
+  border-left: 3px solid transparent;
+}
+.flow-dest {
+  border-left: none;
+  border-right: 3px solid transparent;
+}
+.flow-node-name {
+  font-size: 0.82rem;
+  font-weight: 700;
+  line-height: 1.4;
+}
+.flow-node-num {
+  font-family: var(--font-mono);
+  font-size: 0.62rem;
+  color: var(--fg-muted);
+  margin-top: 2px;
+}
+@media (max-width: 600px) {
+  .flow-cols { gap: 0.5rem; }
+  .flow-col { width: 30%; }
+  .flow-node-name { font-size: 0.72rem; }
+  .flow-node { padding: 6px 8px; margin-bottom: 8px; }
+  .flow-node-num { font-size: 0.58rem; }
+}
+
 /* — TIMELINE STRIPS — */
 .strips-section {
   margin: 3rem 0;
   padding: 2rem 0;
   border-top: 1px solid var(--border);
   border-bottom: 1px solid var(--border);
-  overflow: hidden;
 }
 .strips-title {
   font-family: var(--font-display);
@@ -462,7 +515,7 @@ body {
 .strips-tip {
   display: none;
   position: absolute;
-  bottom: 130%;
+  bottom: 24px;
   left: 0;
   background: var(--card-bg);
   border: 1px solid var(--border);
@@ -769,6 +822,15 @@ body {
 .tl-s-migration-group { margin-top: 1rem; }
 .part-nav-final { margin-top: 3rem; }
 
+
+/* — ACTIVE STATES (mobile tap feedback) — */
+.part-nav a:active { opacity: 0.7; }
+.sticky-nav-link:active { opacity: 0.7; }
+.dossier-card-header:active { opacity: 0.8; }
+.mig-node:active { opacity: 0.7; }
+.flow-node:active { opacity: 0.7; }
+.tl-s-era-label:active, .tl-s-event:active { opacity: 0.7; }
+
 /* — FOCUS — */
 :focus-visible {
   outline: 2px solid var(--green);
@@ -1023,11 +1085,57 @@ a:focus-visible, .tl-s-event:focus-visible, .tl-s-era-label:focus-visible {
 
 <div class="strips-section">
   <div class="strips-title">Куда ушли люди</div>
-  <div class="strips-sub">Карьерные пути сотрудников российских игровых редакций. Каждая полоска — один человек, цвет — организация, длина — стаж.</div>
-  <div class="strips-legend" id="stripsLegend1"></div>
-  <div class="strips-container"><div class="strips-inner" id="stripsChart1"></div></div>
-  <div class="strips-axis" id="stripsAxis1"></div>
-  <div class="strips-note">Данные из открытых источников: объявлений о назначениях, профилей, интервью.</div>
+  <div class="strips-sub">Основные направления кадровой миграции из игровых редакций. Толщина потока — относительный масштаб.</div>
+  <div class="flow-overview" id="flowOverview">
+    <svg class="flow-svg" id="flowSvg"></svg>
+    <div class="flow-cols">
+      <div class="flow-col flow-col-left">
+        <div class="flow-node flow-src" data-id="igromania" style="border-left-color:#C2D218">
+          <div class="flow-node-name">Игромания</div>
+          <div class="flow-node-num">10 чел.</div>
+        </div>
+        <div class="flow-node flow-src" data-id="stranigr" style="border-left-color:#E84434">
+          <div class="flow-node-name">Страна Игр</div>
+          <div class="flow-node-num">5 чел.</div>
+        </div>
+        <div class="flow-node flow-src" data-id="dtf" style="border-left-color:#1DB2AC">
+          <div class="flow-node-name">Комитет</div>
+          <div class="flow-node-num">5 чел.</div>
+        </div>
+        <div class="flow-node flow-src" data-id="stopgame" style="border-left-color:#888">
+          <div class="flow-node-name">StopGame</div>
+          <div class="flow-node-num">7 чел.</div>
+        </div>
+        <div class="flow-node flow-src" data-id="kanobu" style="border-left-color:#7B68EE">
+          <div class="flow-node-name">Kanobu</div>
+          <div class="flow-node-num">2 чел.</div>
+        </div>
+      </div>
+      <div class="flow-col flow-col-right">
+        <div class="flow-node flow-dest" data-dest="gamedev" style="border-right-color:#C2D218">
+          <div class="flow-node-name">Геймдев</div>
+          <div class="flow-node-num">7 чел.</div>
+        </div>
+        <div class="flow-node flow-dest" data-dest="pr" style="border-right-color:#1DB2AC">
+          <div class="flow-node-name">PR / маркетинг</div>
+          <div class="flow-node-num">7 чел.</div>
+        </div>
+        <div class="flow-node flow-dest" data-dest="youtube" style="border-right-color:#E84434">
+          <div class="flow-node-name">YouTube / Boosty</div>
+          <div class="flow-node-num">3 чел.</div>
+        </div>
+        <div class="flow-node flow-dest" data-dest="bigtech" style="border-right-color:#FF8C00">
+          <div class="flow-node-name">BigTech</div>
+          <div class="flow-node-num">1 чел.</div>
+        </div>
+        <div class="flow-node flow-dest" data-dest="unknown" style="border-right-color:#444">
+          <div class="flow-node-name">Неизвестно</div>
+          <div class="flow-node-num">11 чел.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="strips-note">Данные из открытых источников. Подробные карьерные пути — в секции «Миграция».</div>
 </div>
 
 <p>Экспертиза мигрировала. Три волны за десять лет из одной только «Игромании» — добровольный уход, смена владельца, принудительное сокращение. Направления одни и те же: PR, маркетинг, геймдев, совсем другие индустрии. Telegram-каналы об играх — побочный проект для тех, кто работает в другом месте. 129 рублей в месяц. Не бизнес-модель. Хобби с монетизацией.</p>
@@ -1745,7 +1853,61 @@ function buildStrips(chartId, axisId, legendId) {
   }
 }
 
-buildStrips("stripsChart1", "stripsAxis1", "stripsLegend1");
+
+// Flow overview lines for Part 4
+const FLOW_LINKS = [
+  { src:"igromania", dest:"gamedev", weight:2, color:"#C2D218" },
+  { src:"igromania", dest:"pr", weight:1, color:"#C2D218" },
+  { src:"igromania", dest:"youtube", weight:1, color:"#C2D218" },
+  { src:"igromania", dest:"unknown", weight:5, color:"#C2D218" },
+  { src:"stranigr", dest:"pr", weight:3, color:"#E84434" },
+  { src:"stranigr", dest:"unknown", weight:2, color:"#E84434" },
+  { src:"dtf", dest:"pr", weight:1, color:"#1DB2AC" },
+  { src:"dtf", dest:"bigtech", weight:1, color:"#1DB2AC" },
+  { src:"dtf", dest:"unknown", weight:3, color:"#1DB2AC" },
+  { src:"stopgame", dest:"gamedev", weight:4, color:"#888" },
+  { src:"stopgame", dest:"youtube", weight:1, color:"#888" },
+  { src:"stopgame", dest:"unknown", weight:2, color:"#888" },
+  { src:"kanobu", dest:"gamedev", weight:1, color:"#7B68EE" },
+  { src:"kanobu", dest:"pr", weight:1, color:"#7B68EE" },
+];
+
+function drawFlowLines() {
+  const container = document.getElementById("flowOverview");
+  const svg = document.getElementById("flowSvg");
+  if (!container || !svg) return;
+  
+  const rect = container.getBoundingClientRect();
+  svg.setAttribute("viewBox", "0 0 " + rect.width + " " + rect.height);
+  svg.innerHTML = "";
+
+  FLOW_LINKS.forEach(link => {
+    const srcNode = container.querySelector('.flow-src[data-id="' + link.src + '"]');
+    const destNode = container.querySelector('.flow-dest[data-dest="' + link.dest + '"]');
+    if (!srcNode || !destNode) return;
+
+    const sr = srcNode.getBoundingClientRect();
+    const dr = destNode.getBoundingClientRect();
+    
+    const sx = sr.right - rect.left;
+    const sy = sr.top - rect.top + sr.height / 2;
+    const dx = dr.left - rect.left;
+    const dy = dr.top - rect.top + dr.height / 2;
+    const mx = (sx + dx) / 2;
+
+    const path = document.createElementNS("http://www.w3.org/2000/svg", "path");
+    path.setAttribute("d", "M" + sx + "," + sy + " C" + mx + "," + sy + " " + mx + "," + dy + " " + dx + "," + dy);
+    path.setAttribute("stroke", link.color);
+    path.setAttribute("stroke-width", Math.max(1, link.weight * 1.5));
+    path.setAttribute("fill", "none");
+    path.setAttribute("opacity", "0.25");
+    svg.appendChild(path);
+  });
+}
+
+drawFlowLines();
+window.addEventListener("resize", drawFlowLines);
+
 buildStrips("stripsChart2", "stripsAxis2", "stripsLegend2");
 
 buildMigGraph();

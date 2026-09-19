@@ -884,7 +884,7 @@ a:focus-visible, .tl-s-event:focus-visible, .tl-s-era-label:focus-visible {
 
 <nav class="sticky-nav" id="stickyNav">
   <div class="sticky-nav-inner">
-    <a href="#" class="sticky-nav-brand" onclick="window.scrollTo({top:0,behavior:'smooth'});return false">Пресс <span>F</span></a>
+    <a href="#" class="sticky-nav-brand" onclick="window.scrollTo({top:0,behavior:'smooth'});history.replaceState(null,'',window.location.pathname);return false">Пресс <span>F</span></a>
     <div class="sticky-nav-links">
       <a href="#part1" class="sticky-nav-link" data-section="part1">I. Бумага</a>
       <a href="#part2" class="sticky-nav-link" data-section="part2">II. Движок</a>
@@ -1804,6 +1804,12 @@ function updateNav() {
       link.classList.remove('active');
     }
   });
+  
+  if (currentSection && window.location.hash !== '#' + currentSection) {
+    history.replaceState(null, '', '#' + currentSection);
+  } else if (!currentSection && window.location.hash) {
+    history.replaceState(null, '', window.location.pathname);
+  }
 }
 
 window.addEventListener('scroll', updateNav, { passive: true });
